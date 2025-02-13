@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.spotify-clone {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #181818;
+  border-bottom: 1px solid #282828;
+  z-index: 1000;
+  gap: 1rem;
+}
+
+.search-bar::placeholder {
+  text-align: center;
+  color: #b3b3b3;
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+}
+
+.sidebar button:hover {
+  background-color: #1db954;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+}
+
+.popular-artists,
+.popular-albums {
+  margin-bottom: 30px;
+}
+
+.popular-artists h2,
+.popular-albums h2 {
+  margin-bottom: 20px;
+}
+
+.artist-list,
+.album-list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.artist,
+.album {
+  background-color: #282828;
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+  width: 160px;
+}
+
+.artist img {
+  height: 70%;
+  width: 100%;
+  border-radius: 90%;
+  margin-bottom: 10px;
+}
+
+.album p {
+  margin: 5px 0;
+}
+
+.scrollbar {
+  display: none;
+}
