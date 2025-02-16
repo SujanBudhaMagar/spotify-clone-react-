@@ -6,25 +6,17 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-color: #121212;
+  background-color: black;
   color: #ffffff;
 }
-
+.test {
+  border: 1px solid red;
+}
 .spotify-clone {
   display: flex;
   flex-direction: column;
   height: 100vh;
-}
-
-.header {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: #181818;
-  border-bottom: 1px solid #282828;
-  z-index: 1000;
-  gap: 1rem;
+  overflow: hidden;
 }
 
 .search-bar::placeholder {
@@ -35,6 +27,7 @@ body {
 .main-content {
   display: flex;
   flex: 1;
+  overflow-y: auto; /* Enable vertical scrolling */
 }
 
 .sidebar button:hover {
@@ -61,14 +54,13 @@ body {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 10px;
 }
 
 .artist,
 .album {
-  background-color: #282828;
+  background-color: #121212;
   padding: 5px;
-  border-radius: 5px;
   text-align: center;
   width: 160px;
 }
@@ -84,6 +76,14 @@ body {
   margin: 5px 0;
 }
 
-.scrollbar {
+/* Hide scrollbar for all browsers */
+.main-content::-webkit-scrollbar,
+.content-container::-webkit-scrollbar {
   display: none;
+}
+
+/* Ensure scrolling is enabled */
+.main-content,
+.content-container {
+  overflow-y: scroll;
 }

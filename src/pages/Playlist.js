@@ -2,32 +2,47 @@ import { useParams } from "react-router-dom";
 import { FaCheckCircle, FaPlay } from "react-icons/fa";
 import { MdBorderHorizontal } from "react-icons/md";
 import FirstCard from "../cards/FirstCard";
-import { Img, Songs } from "../Dummydata";
-import Navbar from "./navbar";
-import Sidebar from "./sidebar";
+import { useEffect, useState } from "react";
+import { Artist } from "../Dummydata";
+import Navbar from "../components/navbar";
+import Sidebar from "../components/sidebar";
 
 const Playlist = () => {
-  const { id } = useParams(); // Get artist ID from URL
+  const { id } = useParams(); // Get the 'id' from the URL
+  const [artistData, setArtistData] = useState();
 
-  // Find artist details based on ID
-  const artist = Img.find((artist) => artist.id.toString() === id);
+  useEffect(() => {
+    console.log("Artist ID from URL:", id); // Check if the ID is being captured
 
-  if (!artist) {
+    // Find the artist by matching the ID
+    const selectedArtist = Artist.find(
+      (artist) => artist.id.toString() === id // Compare string values to ensure correct match
+    );
+
+    if (selectedArtist) {
+      setArtistData(selectedArtist); // Set the artist data if found
+    } else {
+      console.log("Artist not found for ID:", id); // Log when no artist is found
+    }
+  }, [id]); // The effect runs when 'id' changes (e.g., when navigating to a new artist)
+
+  // Render loading or error state if artistData is not yet loaded
+  if (!artistData) {
     return <h1 className="text-white">Artist Not Found</h1>;
   }
 
   return (
     <div className="spotify-clone">
       <main className="main-content">
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap test w-full">
           <Navbar />
           <Sidebar />
-          <div className="bg-black text-white min-h-screen p-4 w-[70%]">
+          <div className=" bg-gray-950 rounded-md mt-2 w-[73%] overflow-x-hidden h-screen">
             {/* Header Section */}
             <div
-              className="relative w-full h-80 bg-cover bg-center rounded-lg overflow-hidden"
+              className="relative w-full h-80 bg-cover bg-center rounded-lg "
               style={{
-                backgroundImage: `url(${artist.img})`, // Dynamically setting background
+                backgroundImage: `url(${artistData.img})`, // Dynamically setting background
               }}
             >
               <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-end p-6">
@@ -35,7 +50,10 @@ const Playlist = () => {
                   <FaCheckCircle className="text-blue-400 text-xl" />
                   <span className="text-sm">Verified Artist</span>
                 </div>
-                <FirstCard name={artist.name} listeners={artist.listeners} />
+                <FirstCard
+                  name={artistData.name}
+                  listeners={artistData.listeners}
+                />
               </div>
             </div>
 
@@ -54,7 +72,7 @@ const Playlist = () => {
             <div className="mt-6">
               <h2 className="text-2xl font-bold">Popular Songs</h2>
               <div className="mt-4 space-y-4">
-                {Songs.map((song, index) => (
+                {artistData.songs?.map((song, index) => (
                   <div
                     key={index}
                     className="flex items-center justify-between p-2 bg-gray-800 rounded-lg hover:bg-gray-700 transition"
