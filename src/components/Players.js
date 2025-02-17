@@ -2,9 +2,11 @@ import { GrCaretPrevious } from "react-icons/gr";
 import { GrCaretNext } from "react-icons/gr";
 import { FaRegPauseCircle } from "react-icons/fa";
 import { CiVolume } from "react-icons/ci";
-import { Artists } from "../Dummydata";
+import { Artist } from "../Dummydata";
 
 const Players = ({ currentSong }) => {
+  const artist = Artist.find((artist) => artist.id === currentSong?.id);
+
   return (
     <footer className="p-4 bg-[#222222] text-white w-full fixed bottom-0 h-[10%] flex items-center justify-center">
       <div className="flex items-center justify-between w-full ">
@@ -17,7 +19,7 @@ const Players = ({ currentSong }) => {
             />
             <>
               <p>{currentSong.title}</p>
-              <p>{Artists.name}</p>
+              <p>{artist ? artist.name : "Unknown Artist"}</p>
             </>
           </div>
         )}
