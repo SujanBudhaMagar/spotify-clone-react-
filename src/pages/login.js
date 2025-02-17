@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import bcrypt from "bcryptjs";
 
 export default function LogIn() {
   const navigate = useNavigate();
@@ -7,12 +8,34 @@ export default function LogIn() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleLogIn = (event) => {
+  const handleLogIn = async (event) => {
     event.preventDefault();
 
     if (!email || !password) {
       setError("Email and password are required.");
       return;
+    }
+
+    // Retrieve user data from local storage
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+
+    if (!storedUser) {
+      setError("User not found. Please sign up first.");
+      return;
+    }
+
+    // Compare the entered password with the stored hashed password
+    const isPasswordValid = await bcrypt.compare(password, storedUser.password);
+
+    if (email === storedUser.email && isPasswordValid) {
+      // Simulate token generation
+      const token = "dummy-token";
+      localStorage.setItem("token", token);
+
+      // Navigate to the home page or another page
+      navigate("/");
+    } else {
+      setError("Invalid email or password.");
     }
   };
 
@@ -29,7 +52,7 @@ export default function LogIn() {
         </h3>
 
         <div className="buttons space-y-2 mb-6">
-          <button className="w-full flex items-center justify-center gap-2 bg-gray-800  py-2 rounded-full mb-2 border border-gray-600 hover:bg-gray-700 p-2 text-white hover:border-white">
+          <button className="w-full flex items-center justify-center gap-2 bg-gray-800 py-2 rounded-full mb-2 border border-gray-600 hover:bg-gray-700 p-2 text-white hover:border-white">
             <img
               src="https://img.icons8.com/color/48/000000/google-logo.png"
               alt="Google"
@@ -37,7 +60,7 @@ export default function LogIn() {
             />
             Continue with Google
           </button>
-          <button className="w-full flex items-center justify-center gap-2 bg-gray-800  py-2 rounded-full mb-2 border border-gray-600 hover:bg-gray-700 p-2 text-white hover:border-white">
+          <button className="w-full flex items-center justify-center gap-2 bg-gray-800 py-2 rounded-full mb-2 border border-gray-600 hover:bg-gray-700 p-2 text-white hover:border-white">
             <img
               src="https://img.icons8.com/fluency/48/000000/facebook-new.png"
               alt="Facebook"
@@ -45,7 +68,7 @@ export default function LogIn() {
             />
             Continue with Facebook
           </button>
-          <button className="w-full flex items-center justify-center gap-2 bg-gray-800  py-2 rounded-full mb-2 border border-gray-600 hover:bg-gray-700 p-2 text-white hover:border-white">
+          <button className="w-full flex items-center justify-center gap-2 bg-gray-800 py-2 rounded-full mb-2 border border-gray-600 hover:bg-gray-700 p-2 text-white hover:border-white">
             <img
               src="https://img.icons8.com/ios-filled/50/ffffff/mac-os.png"
               alt="Apple"
@@ -73,7 +96,7 @@ export default function LogIn() {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="password" className=" text-sm font-medium mb-1">
+            <label htmlFor="password" className="text-sm font-medium mb-1">
               Password
             </label>
             <input
@@ -92,15 +115,15 @@ export default function LogIn() {
           >
             Log In
           </button>
-          <div className=" flex flex-col justify-center items-center mt-3">
+          <div className="flex flex-col justify-center items-center mt-3">
             <button>Forgot your password?</button>
             <button
-              className="mt-3 "
+              className="mt-3"
               onClick={() => {
                 navigate("/signup");
               }}
             >
-              Don't have an account? Sign up for spotify
+              Don't have an account? Sign up for Spotify
             </button>
           </div>
         </form>

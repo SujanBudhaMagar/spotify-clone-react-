@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import { IoMdHome } from "react-icons/io";
@@ -6,11 +6,25 @@ import { MdDownloadForOffline } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
+  const [isloggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
   const [activeButton, setActiveButton] = useState("");
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
   };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    navigate("/");
+  };
+
+  useEffect(() => {
+    const isHashed = localStorage.getItem("token");
+    if (isHashed) {
+      setIsLoggedIn(true);
+    }
+  }, []);
   return (
     <header className="header  flex justify-between items-center z-[1000]  bg-black sticky top-0 h-16 w-full shadow-md  ">
       <img
@@ -45,22 +59,37 @@ export default function Navbar() {
         >
           Install App
         </Link>
-        <Link
-          to="/signup"
-          className={`hover:text-slate-300 `}
-          onClick={() => handleButtonClick("signup")}
-        >
-          Sign up
-        </Link>
-        <Link
-          to="/login"
-          className={`rounded-full bg-white text-black hover:bg-slate-300 px-4 py-2 ${
-            activeButton === "login" ? "active" : ""
-          }`}
-          onClick={() => handleButtonClick("login")}
-        >
-          Log in
-        </Link>
+
+        {!isloggedIn ? (
+          <>
+            <Link
+              to="/signup"
+              className={`hover:text-slate-300 `}
+              onClick={() => handleButtonClick("signup")}
+            >
+              Sign up
+            </Link>
+            <Link
+              to="/login"
+              className={`rounded-full bg-white text-black hover:bg-slate-300 px-4 py-2 ${
+                activeButton === "login" ? "active" : ""
+              }`}
+              onClick={() => handleButtonClick("login")}
+            >
+              Log in
+            </Link>
+          </>
+        ) : (
+          <Link
+            to="/"
+            className={`rounded-full bg-white text-black hover:bg-slate-300 px-4 py-2 ${
+              activeButton === "" ? "active" : ""
+            }`}
+            onClick={handleLogout}
+          >
+            Logout
+          </Link>
+        )}
       </div>
     </header>
   );

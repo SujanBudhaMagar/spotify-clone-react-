@@ -10,6 +10,7 @@ import dha from "./assets/dha.png";
 import hit from "./assets/hit.png";
 import die from "./assets/die.png";
 import maya from "./assets/maya.png";
+
 export const Artist = [
   {
     id: 1,
@@ -22,21 +23,21 @@ export const Artist = [
         title: "Bardali",
         plays: "6,212,225",
         duration: "3:29",
-        img: "bardali.jpg",
+        img: "https://th.bing.com/th/id/OIP.GpSdyM0Oj3MBdLPYu9u6LQAAAA?w=148&h=150&c=7&r=0&o=5&dpr=1.3&pid=1.7",
       },
       {
         id: 102,
         title: "Sarangi",
         plays: "12,111,622",
         duration: "4:48",
-        img: "sarangi.jpg",
+        img: "https://th.bing.com/th/id/OIP.iUpK4C5a2cjxCN-9nAbr-AHaHa?w=182&h=182&c=7&r=0&o=5&dpr=1.3&pid=1.7",
       },
       {
         id: 103,
         title: "Parkha Na",
         plays: "11,605,213",
         duration: "4:02",
-        img: "parkhana.jpg",
+        img: "https://th.bing.com/th/id/OIP.2HxVlvpHUJE7vE2Ux1xx-QHaFj?w=226&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
       },
     ],
   },
@@ -194,6 +195,54 @@ export const Artists = [
   { id: 4, name: "Purna Rai", img: purna },
   { id: 5, name: "Tribal Rain", img: tribal },
   { id: 6, name: "Sajjan Raj Vaidya", img: srv },
+];
+export const MoreArtists = [
+  { id: 1, name: "Sushant KC", img: sushkc },
+  { id: 2, name: "Pritam", img: prit },
+  { id: 3, name: "John Rai", img: john },
+  { id: 4, name: "Purna Rai", img: purna },
+  { id: 5, name: "Tribal Rain", img: tribal },
+  { id: 6, name: "Sajjan Raj Vaidya", img: srv },
+  {
+    id: 7,
+    name: "Bartika Eam Rai",
+    img: "https://th.bing.com/th/id/OIP.mDw0_GEUl7RjjD-QfbVJggHaHa?w=186&h=186&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+  },
+  {
+    id: 8,
+    name: "Neetesh Jung Kunwar",
+    img: "https://th.bing.com/th/id/OIP.yLMG6S9UxdWwUwb5NfbDpAHaJQ?w=138&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+  },
+  {
+    id: 9,
+    name: "Swoopna Suman",
+    img: "https://th.bing.com/th/id/OIP.S2IHN4G7wlD9F_k2P2yVSAHaEs?w=294&h=186&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+  },
+  {
+    id: 10,
+    name: "Yugal Gurung",
+    img: "https://th.bing.com/th/id/OIP.nIuHAkL56dpABHtPIG7g8AHaEK?w=304&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+  },
+  {
+    id: 11,
+    name: "Prabesh Kumar Shrestha",
+    img: "https://th.bing.com/th/id/OIP.c7v2rCO3oirGYxHfJqQCHAHaHa?w=152&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+  },
+  {
+    id: 12,
+    name: "Bikki Gurung",
+    img: "https://th.bing.com/th/id/OIP.LiQYpW9kBbmpixpa-vEErgHaGu?w=175&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+  },
+  {
+    id: 13,
+    name: "Arthur Gunn",
+    img: "https://th.bing.com/th/id/OIP.qqytn8ihNcq0cyH6tGf0BQHaEK?w=268&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+  },
+  {
+    id: 14,
+    name: "Shashwot Khadka",
+    img: "https://th.bing.com/th/id/OIP.HAtPkkHAQYyIJ4L4Z9qgngHaGw?w=192&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+  },
 ];
 
 export const Albums = [

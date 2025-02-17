@@ -8,6 +8,8 @@ import Playlist from "./pages/Playlist";
 import Signup from "./pages/signup";
 import LogIn from "./pages/login";
 import Content from "./pages/content";
+import ShowAll from "./pages/showall";
+import Players from "./components/Players";
 
 function App() {
   return (
@@ -17,9 +19,10 @@ function App() {
           <Route path="/" element={<Content />} />
           <Route path="/install" element={<InstallApp />} />
           <Route path="/playlist/:id" element={<Playlist />} />
-
+          <Route path="/showall" element={<ShowAll />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/player" element={<Players />} />
         </Routes>
       </Router>
     </>

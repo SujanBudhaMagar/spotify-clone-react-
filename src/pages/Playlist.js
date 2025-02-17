@@ -6,11 +6,16 @@ import { useEffect, useState } from "react";
 import { Artist } from "../Dummydata";
 import Navbar from "../components/navbar";
 import Sidebar from "../components/sidebar";
+import Players from "../components/Players";
 
 const Playlist = () => {
   const { id } = useParams(); // Get the 'id' from the URL
   const [artistData, setArtistData] = useState();
+  const [currentSong, setCurrentSong] = useState(null);
 
+  const handleSongClick = (song) => {
+    setCurrentSong(song);
+  };
   useEffect(() => {
     console.log("Artist ID from URL:", id); // Check if the ID is being captured
 
@@ -34,10 +39,10 @@ const Playlist = () => {
   return (
     <div className="spotify-clone">
       <main className="main-content">
-        <div className="flex flex-wrap test w-full">
+        <div className="flex flex-wrap  w-full">
           <Navbar />
           <Sidebar />
-          <div className=" bg-gray-950 rounded-md mt-2 w-[73%] overflow-x-hidden h-screen">
+          <div className=" bg-gray-950 rounded-md mt-2 w-[73%] overflow-y-auto h-screen">
             {/* Header Section */}
             <div
               className="relative w-full h-80 bg-cover bg-center rounded-lg "
@@ -76,11 +81,12 @@ const Playlist = () => {
                   <div
                     key={index}
                     className="flex items-center justify-between p-2 bg-gray-800 rounded-lg hover:bg-gray-700 transition"
+                    onClick={() => handleSongClick(artistData.songs[index])}
                   >
                     <div className="flex items-center gap-4">
                       <span className="text-gray-400 text-lg">{index + 1}</span>
                       <img
-                        src={`/${song.img}`}
+                        src={`${song.img}`}
                         alt={song.title}
                         className="w-12 h-12 rounded-md"
                       />
@@ -98,6 +104,7 @@ const Playlist = () => {
             </div>
           </div>
         </div>
+        {currentSong && <Players currentSong={currentSong} />}
       </main>
     </div>
   );
