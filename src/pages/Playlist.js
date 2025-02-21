@@ -12,16 +12,17 @@ const Playlist = () => {
   const { id } = useParams(); // Get the 'id' from the URL
   const [artistData, setArtistData] = useState();
   const [currentSong, setCurrentSong] = useState(null);
+  const isLoggedIn = localStorage.getItem("token");
 
   const handleSongClick = (song) => {
     setCurrentSong(song);
   };
   useEffect(() => {
-    console.log("Artist ID from URL:", id); // Check if the ID is being captured
+    console.log("Artist ID from URL:", id); // Checking if the ID is being captured
 
     // Find the artist by matching the ID
     const selectedArtist = Artist.find(
-      (artist) => artist.id.toString() === id // Compare string values to ensure correct match
+      (artist) => artist.id.toString() === id // Comparing string values to ensure correct match
     );
 
     if (selectedArtist) {
@@ -104,7 +105,9 @@ const Playlist = () => {
             </div>
           </div>
         </div>
-        {currentSong && <Players currentSong={currentSong} />}
+        {isLoggedIn
+          ? currentSong && <Players currentSong={currentSong} />
+          : null}
       </main>
     </div>
   );

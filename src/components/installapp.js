@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./navbar";
 import Sidebar from "./sidebar";
 import Footer from "./footer";
 const InstallApp = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const isHashed = localStorage.getItem("token");
+    if (isHashed) {
+      setIsLoggedIn(true);
+    }
+  }, []);
   return (
     <>
       <div className="spotify-clone">
@@ -23,7 +31,7 @@ const InstallApp = () => {
             </div>
           </div>
         </main>
-        <Footer />
+        {!isLoggedIn ? <Footer /> : null}
       </div>
     </>
   );

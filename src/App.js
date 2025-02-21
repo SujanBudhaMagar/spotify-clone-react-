@@ -12,6 +12,7 @@ import ShowAll from "./pages/showall";
 import Players from "./components/Players";
 
 function App() {
+  const isLoggedIn = localStorage.getItem("token");
   return (
     <>
       <Router>
@@ -20,9 +21,14 @@ function App() {
           <Route path="/install" element={<InstallApp />} />
           <Route path="/playlist/:id" element={<Playlist />} />
           <Route path="/showall" element={<ShowAll />} />
-          <Route path="/login" element={<LogIn />} />
-          <Route path="/signup" element={<Signup />} />
           <Route path="/player" element={<Players />} />
+
+          {!isLoggedIn ? (
+            <>
+              <Route path="/login" element={<LogIn />} />
+              <Route path="/signup" element={<Signup />} />
+            </>
+          ) : null}
         </Routes>
       </Router>
     </>
