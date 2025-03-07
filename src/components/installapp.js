@@ -19,7 +19,7 @@ const InstallApp = () => {
             <Navbar />
             <Sidebar />
             <div>
-              <div className="mt-10 w-[80%] bg-gradient-to-r from-gray-800 to-gray-900 p-6 rounded-lg shadow-lg">
+              <div className="mt-10 w-[70%] bg-gradient-to-r from-gray-800 to-gray-900 p-6 rounded-lg shadow-lg">
                 <h2 className="text-3xl font-semibold mb-4">
                   Download Spotify for Windows
                 </h2>
